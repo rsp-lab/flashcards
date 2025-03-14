@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flashcard Test</title>
+    <link rel="stylesheet" th:href="@{../css/style.css}" />
+</head>
+<body>
+
+    <script type="text/javascript">
+        function showAnswer(id) {
+            document.getElementById('hiddenAnswer' + id).setAttribute('style', 'display:visible; color: var(--textColor-second-side)');
+            document.getElementById('answer' + id).setAttribute('style', 'display:none');
+        }
+    </script>
+
+    <table>
+        <tr>
+            <td th:class="menuAnswerHeader">
+                <div th:if="${nextPage > 1}">
+                    <a th:href="@{/test(page=${prevPage})}" th:text="'Previous page'" />
+                </div>
+                <div th:unless="${nextPage > 1}">
+                    <a th:href="@{./}" th:text="#{link.cancelLink}" />
+                </div>
+            </td>
+            <td th:class="menuAnswerHeader" th:text="${progress}" />
+            <td th:class="menuAnswerHeader">
+                <div th:if="${nextPage < __${totalPages}__}">
+                    <a th:href="@{/test(page=${nextPage})}" th:text="'Next page'" />
+                </div>
+                <div th:unless="${nextPage < __${totalPages}__}">
+                    <a th:href="@{./}" th:text="#{link.cancelLink}" />
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table>
+        <th:block th:each="flashcard, iCounter: ${flashcards}">
+        <tr>
+            <td th:class="flashcardFirst">
+                <!-- style="white-space: pre-line" umożliwia dzielenie całego tekstu wg linii -->
+                <div style="white-space: pre-line"><th:block th:text="${flashcard.first}" /></div>
+            </td>
+        </tr>
+        <tr>
+            <td th:class="flashcardSecond" th:if="${flashcard.second != null}" th:onclick="|window.location.href='javascript:showAnswer(__${iCounter.count}__)'; return false;|">
+                <span th:id="'answer__${iCounter.count}__'" th:text="'Show answer'" />
+                <div th:id="'hiddenAnswer__${iCounter.count}__'" style="display: none">
+                    <div style="white-space: pre-line"><th:block th:text="${flashcard.second}" /></div>
+                </div>
+            </td>
+            <td th:class="flashcardSecondNoAnswer" th:unless="${flashcard.second != null}" />
+        </tr>
+        </th:block>
+    </table>
+
+</body>
+</html>
+
+

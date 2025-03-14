@@ -1,0 +1,116 @@
+:root {
+    --background-color-main: #1f1e3b;
+    --background-color-table: #29274E;
+    --background-color-odd: #222140;
+    --textColor: white;
+    --textColor-second-side: #adacef;
+    --textColor-show-answer-text: #4a478d;
+    --textColor-link: gold;
+    --textColor-link-answer: #5b57af;
+    --textColor-link-visited: gold;
+    --textColor-link-hover: white;
+    --textColor-link-active: gold;
+}
+
+html, body {
+    font-family: Arial, Verdana, Calibri, sans-serif;
+
+    background-color: var(--background-color-main);
+    color: var(--textColor);
+}
+
+a:link {
+    color: var(--textColor-link);
+}
+a:link.answer {
+    color: var(--textColor-link-answer);
+}
+a:visited {
+    color: var(--textColor-link-visited);
+}
+a:hover {
+    color: var(--textColor-link-hover);
+}
+a:active {
+    color: var(--textColor-link-active);
+}
+
+table {
+    width: 90%;
+    margin: auto; /* centered */
+    /* border-collapse: collapse; */
+
+    font-family: Verdana, Segoe, Arial, sans-serif;
+    text-align: center;
+}
+
+td.menuHeader {
+    border-bottom: 1px;
+    background: none repeat scroll 0 0 var(--background-color-table);
+    width: 90%;
+    height: 80px;
+    color: var(--textColor);
+    font-size: 36px;
+}
+td.menuAnswerHeader {
+    border-bottom: 1px;
+    background: none repeat scroll 0 0 var(--background-color-table);
+    width: 33%;
+    height: 50px;
+    color: var(--textColor);
+    font-size: 24px;
+}
+td.menu {
+    border-bottom: 1px;
+    background: none repeat scroll 0 0 var(--background-color-table);
+    width: 50%;
+    height: 80px;
+    color: var(--textColor);
+    font-size: 24px;
+}
+td.flashcardFirst {
+    border-bottom: 1px;
+    background: none repeat scroll 0 0 var(--background-color-table);
+    width: 90%;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    color: var(--textColor);
+    font-size: 60px;
+}
+td.flashcardSecond {
+    border-bottom: 1px;
+    background: none repeat scroll 0 0 var(--background-color-odd);
+    width: 90%;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    color: var(--textColor-show-answer-text);
+    font-size: 60px;
+}
+td.flashcardSecondNoAnswer {
+    border-bottom: 1px;
+    background: none repeat scroll 0 0 var(--background-color-odd);
+    width: 90%;
+    height: 50px;
+    color: var(--textColor-show-answer-text);
+    font-size: 60px;
+}
+td.flashcardSecond:hover {
+    background: none repeat scroll 0 0 #333060;
+}
+td.flashcardSecond:active {
+    background: none repeat scroll 0 0 #4e4990;
+}
+
+input.elementsField {
+    width: 80%;
+    font-size: 24px;
+}
+textarea {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 80%;
+
+    font-family: Verdana, Segoe, Arial, sans-serif;
+    font-size: 16px;
+}

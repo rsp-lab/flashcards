@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="@{../css/style.css}" />
+</head>
+<body>
+
+    <h1 align="center">
+        <span th:text="${message}" />
+    </h1>
+
+    <table>
+        <tr>
+            <td th:class="menuHeader">
+                <font color="#ff4500">
+                    <span th:if="${noEntries == true}" th:text="'You have no entries in the database to make a test!'" />
+                </font>
+                <th:block th:unless="${noEntries == true}">
+                    <span th:text="'You have currently'" />
+                    <font color="#00bfff"><span th:text="${entriesNumber}" /></font>
+                    <span th:text="' entries.'" />
+                    <span th:text="'You\'ll see'" />
+                    <font color="#00bfff"><span th:text="${entry.elementsPerPage}" /></font>
+                    <span th:text="' cards per page.'" />
+                </th:block>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td th:class="menu">
+                <th:block th:text="'Elements per page:'" />
+            </td>
+            <td th:class="menu">
+                <form method="POST" th:action="@{/changeElements}" th:object="${entry}">
+                    <input th:class="elementsField" th:type="text" th:field="${entry.elementsPerPage}">
+                    <input type="submit" value="Set"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td th:class="menu">
+                <th:block th:text="'Insert new entries:'" />
+            </td>
+            <td th:class="menu">
+                <form method="POST" th:action="@{/add}" th:object="${entry}">
+                    <textarea name="text_content" rows="10" cols="50" th:field="${entry.text}" />
+                    <input type="submit" value="Insert" />
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td th:class="menu">
+                <a style="color: gold" th:href="@{./remove}" th:text="#{link.removeEntiresLink}" />
+            </td>
+            <td th:class="menu">
+                <a style="color: gold" th:href="@{./prepareTest}" th:text="#{link.testLink}" />
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
+
+
